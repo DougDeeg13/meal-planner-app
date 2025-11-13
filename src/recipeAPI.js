@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const SPOONACULAR_API_KEY = 'YOUR_SPOONACULAR_API_KEY_HERE';
+const SPOONACULAR_API_KEY = '04aade467a5340b3b361b66793ced4c0';
 
 export const extractRecipe = async (url) => {
   try {
     const response = await axios.get(
-      `https://api.spoonacular.com/recipes/extract?url=${encodeURIComponent(url)}&apiKey=${SPOONACULAR_API_KEY}`
+      `https://api.spoonacular.com/recipes/extract?url=${encodeURIComponent(url)}&apiKey=${04aade467a5340b3b361b66793ced4c0      }`
     );
     
     return {
