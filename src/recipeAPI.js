@@ -5,7 +5,13 @@ const SPOONACULAR_API_KEY = '04aade467a5340b3b361b66793ced4c0';
 export const extractRecipe = async (url) => {
   try {
     const response = await axios.get(
-      `https://api.spoonacular.com/recipes/extract?url=${encodeURIComponent(url)}&apiKey=${04aade467a5340b3b361b66793ced4c0}`
+      'https://api.spoonacular.com/recipes/extract',
+      {
+        params: {
+          url: url,
+          apiKey: SPOONACULAR_API_KEY
+        }
+      }
     );
     
     return {
@@ -20,8 +26,9 @@ export const extractRecipe = async (url) => {
         unit: ing.unit
       })),
       instructions: response.data.instructions || 
-                   response.data.analyzedInstructions[0]?.steps.map(step => step.step).join(' ') || 
-                   'No instructions available'
+                   (response.data.analyzedInstructions && response.data.analyzedInstructions[0] ? 
+                    response.data.analyzedInstructions[0].steps.map(step => step.step).join(' ') : 
+                    'No instructions available')
     };
   } catch (error) {
     console.error('Error extracting recipe:', error);
